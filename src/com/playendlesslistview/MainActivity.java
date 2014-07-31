@@ -32,11 +32,27 @@ public class MainActivity extends Activity implements LoaderCallbacks<List<Strin
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataList);
         lvData.setAdapter(adapter);
         
+        lvData.setOnScrollListener(new EndlessScrollListener() {
+			
+			@Override
+			public void loadMoreResults(int page, int totalItemCount) {
+				// TODO Auto-generated method stub
+				loadMoreDataFromApi(page);
+			}
+		});
+        
         getLoaderManager().initLoader(LOAD_DATA, null, this);
     }
 
 
-    @Override
+    protected void loadMoreDataFromApi(int page) {
+    	Loader loader  = getLoaderManager().getLoader(LOAD_DATA);
+    	tvState.setText("Creating");
+    	((StreamLoader)loader).loadMore(page);
+	}
+
+
+	@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);

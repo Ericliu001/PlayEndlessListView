@@ -23,9 +23,12 @@ public class StreamLoader extends Loader<List<String>> implements GetDataListene
 		// TODO Auto-generated method stub
 		super.onStartLoading();
 		
-		new GetDataTask( getContext() ,this).execute();
+		new GetDataTask( getContext() ,this).execute(0);
 		
 	}
+	
+	
+	
 	
 	@Override
 	public void onQueryComplete(List<String> result) {
@@ -36,6 +39,11 @@ public class StreamLoader extends Loader<List<String>> implements GetDataListene
 	public void deliverResult(List<String> data) {
 		// TODO Auto-generated method stub
 		super.deliverResult(data);
+	}
+	
+	
+	public void loadMore(int page){
+		new GetDataTask( getContext() ,this).execute(page);
 	}
 
 	@Override
