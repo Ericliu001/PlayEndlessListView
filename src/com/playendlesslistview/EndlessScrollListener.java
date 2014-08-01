@@ -47,6 +47,7 @@ public abstract class EndlessScrollListener implements OnScrollListener {
 		
 		if (!isLoading  && ((firstVisibleItem + 1 + visibleItemCount) >= totalItemCount )) {
 			loadMoreResults(currentPage +1, totalItemCount);
+			isLoading = true;
 		}
 		
 	}

@@ -23,7 +23,6 @@ public class StreamLoader extends Loader<List<String>> implements GetDataListene
 		// TODO Auto-generated method stub
 		super.onStartLoading();
 		
-		new GetDataTask( getContext() ,this).execute(0);
 		
 	}
 	
@@ -42,8 +41,8 @@ public class StreamLoader extends Loader<List<String>> implements GetDataListene
 	}
 	
 	
-	public void loadMore(int page){
-		new GetDataTask( getContext() ,this).execute(page);
+	public void loadMore(int startPosition, int endPosition){
+		new GetDataTask( getContext() ,this).execute(startPosition, endPosition);
 	}
 
 	@Override
