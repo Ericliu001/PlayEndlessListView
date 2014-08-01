@@ -2,55 +2,64 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <string-array name="navi_drawer_list">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-        <item>Mars</item>
-        <item>Jupiter</item>
-        <item>Saturn</item>
-        <item>Uranus</item>
-        <item>Neptune</item>
-        <item>Mercury1</item>
-        <item>Venus1</item>
-        <item>Earth1</item>
-        <item>Mars1</item>
-        <item>Jupiter1</item>
-        <item>Saturn1</item>
-        <item>Uranus1</item>
-        <item>Neptune1</item>
-        <item>Mercury2</item>
-        <item>Venus2</item>
-        <item>Earth2</item>
-        <item>Mars2</item>
-        <item>Jupiter2</item>
-        <item>Saturn2</item>
-        <item>Uranus2</item>
-        <item>Neptune2</item>
-        <item>Mercury3</item>
-        <item>Venus3</item>
-        <item>Earth3</item>
-        <item>Mars3</item>
-        <item>Jupiter3</item>
-        <item>Saturn3</item>
-        <item>Uranus3</item>
-        <item>Neptune3</item>
-        <item>Mercury4</item>
-        <item>Venus4</item>
-        <item>Earth4</item>
-        <item>Mars4</item>
-        <item>Jupiter4</item>
-        <item>Saturn4</item>
-        <item>Uranus4</item>
-        <item>Neptune4</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
         
-        <item>Mercury5</item>
-        <item>Venus5</item>
-        <item>Earth5</item>
-        <item>Mars5</item>
-        <item>Jupiter5</item>
-        <item>Saturn5</item>
-        <item>Uranus5</item>
-        <item>Neptune5</item>
+        <item>00</item>
+        <item>01</item>
+        <item>02</item>
+        <item>03</item>
+        <item>04</item>
+        <item>05</item>
+        <item>06</item>
+        <item>07</item>
+        <item>08</item>
+        <item>09</item>
+        
+        
+        <item>000</item>
+        <item>001</item>
+        <item>002</item>
+        <item>003</item>
+        <item>004</item>
+        <item>005</item>
+        <item>006</item>
+        <item>007</item>
+        <item>008</item>
+        <item>009</item>
+        
+        
+         <item>0000</item>
+        <item>0001</item>
+        <item>0002</item>
+        <item>0003</item>
+        <item>0004</item>
+        <item>0005</item>
+        <item>0006</item>
+        <item>0007</item>
+        <item>0008</item>
+        <item>0009</item>
+        
+        
+         <item>00000</item>
+        <item>00001</item>
+        <item>00002</item>
+        <item>00003</item>
+        <item>00004</item>
+        <item>00005</item>
+        <item>00006</item>
+        <item>00007</item>
+        <item>00008</item>
+        <item>00009</item>
+        
     </string-array>
 
 </resources>

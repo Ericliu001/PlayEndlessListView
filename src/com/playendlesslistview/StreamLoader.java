@@ -20,8 +20,6 @@ public class StreamLoader extends Loader<List<String>> implements GetDataListene
 
 	@Override
 	protected void onStartLoading() {
-		// TODO Auto-generated method stub
-		super.onStartLoading();
 		
 		
 	}

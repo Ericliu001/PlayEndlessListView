@@ -8,7 +8,7 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 public class GetDataTask extends AsyncTask<Integer, Void, List<String>> {
-	public static final int MAX_REQUEST_RESULT_NUMBER = 15;
+	public static final int MAX_REQUEST_RESULT_NUMBER = 10;
 
 	private WeakReference<GetDataListener> refListener;
 	private Context context;
@@ -48,7 +48,7 @@ public class GetDataTask extends AsyncTask<Integer, Void, List<String>> {
 		ArrayList<String> dataList = new ArrayList<String>();
 		String[] array = context.getResources().getStringArray(
 				R.array.navi_drawer_list);
-		for (int i = 0; i < endPosition - startPosition; i++) {
+		for (int i = 0; i < endPosition - startPosition + 1; i++) {
 			int j = i + startPosition;
 			if (j < array.length) {
 
