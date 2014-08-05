@@ -5,6 +5,8 @@ import android.widget.AbsListView.OnScrollListener;
 
 public abstract class EndlessScrollListener implements OnScrollListener {
 	
+	
+	
 	private int currentPage = 0;
 	private int previousTotalItemCount = 0;
 	private int startingPageIndex = 0;
@@ -46,7 +48,7 @@ public abstract class EndlessScrollListener implements OnScrollListener {
 		}
 		
 		if (!isLoading  && ((firstVisibleItem + 1 + visibleItemCount) >= totalItemCount )) {
-			loadMoreResults(currentPage +1, totalItemCount);
+			loadMoreResults(currentPage, totalItemCount);
 			isLoading = true;
 		}
 		
