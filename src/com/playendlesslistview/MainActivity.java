@@ -1,6 +1,5 @@
 package com.playendlesslistview;
 
-import com.playendlesslistview.generic.MainFragment;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -19,7 +18,7 @@ public class MainActivity extends FragmentActivity{
 		setContentView(R.layout.activity_container);
 		
 		if (getSupportFragmentManager().findFragmentByTag("Good") == null) {
-			getSupportFragmentManager().beginTransaction().add(new MainFragment(), "Good").commit();
+			getSupportFragmentManager().beginTransaction().add(R.id.container, new MainFragment(), "Good").commit();
 		}
 	}
 

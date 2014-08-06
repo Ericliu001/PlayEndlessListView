@@ -26,12 +26,12 @@ public class GetDataTask extends AsyncTask<Integer, Void, List<String>> {
 	protected List<String> doInBackground(Integer... params) {
 		
 		
-		int startPosition = params[0];
-		int endPosition = params[1];
+		int skip = params[0];
+		int top = params[1];
 		
-		if (startPosition < 0 || startPosition > endPosition) {
+		if (skip < 0 || top < 0) {
 			try {
-				throw new Exception("The indices you provided are all wrong: " + startPosition + "  " + endPosition);
+				throw new Exception("The indices you provided are all wrong: " + skip + "  " + top);
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -48,8 +48,8 @@ public class GetDataTask extends AsyncTask<Integer, Void, List<String>> {
 		ArrayList<String> dataList = new ArrayList<String>();
 		String[] array = context.getResources().getStringArray(
 				R.array.navi_drawer_list);
-		for (int i = 0; i < endPosition - startPosition + 1; i++) {
-			int j = i + startPosition;
+		for (int i = 0; i < top; i++) {
+			int j = i + skip;
 			if (j < array.length) {
 
 				dataList.add(array[j]);

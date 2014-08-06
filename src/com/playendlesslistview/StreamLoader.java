@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.Loader;
 import android.os.AsyncTask;
 import android.text.GetChars;
+import android.util.Log;
 
 
 public class StreamLoader extends GenericLoader<List<String>> implements GetDataListener{
@@ -23,6 +24,7 @@ public class StreamLoader extends GenericLoader<List<String>> implements GetData
 	public void loadMore(int skip, int top) {
 		// TODO Auto-generated method stub
 		new GetDataTask(getContext(), this).execute(skip, top);
+		Log.d("eric", "skip: " + skip + " ; top: " + top );
 	}
 	
 }

@@ -2,6 +2,7 @@ package com.playendlesslistview.generic;
 
 import java.util.List;
 
+import com.playendlesslistview.R;
 import com.playendlesslistview.GetDataTask.GetDataListener;
 
 import android.content.Context;
@@ -13,6 +14,10 @@ public abstract class GenericLoader<T> extends Loader<List<T>>  implements GetDa
 	
 	public GenericLoader(Context context) {
 		super(context);
+		
+		String[] array = context.getResources().getStringArray(
+				R.array.navi_drawer_list);
+		serverListSize = array.length;
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -28,6 +33,7 @@ public abstract class GenericLoader<T> extends Loader<List<T>>  implements GetDa
 	}
 	
 	public int getServerListSize(){
+		
 		return serverListSize;
 	}
 	

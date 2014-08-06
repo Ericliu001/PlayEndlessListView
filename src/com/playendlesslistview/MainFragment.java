@@ -1,7 +1,8 @@
-package com.playendlesslistview.generic;
+package com.playendlesslistview;
 
-import com.playendlesslistview.StreamAdapter;
-import com.playendlesslistview.StreamLoader;
+import com.playendlesslistview.generic.EndlessListViewBaseListFragment;
+import com.playendlesslistview.generic.GenericAdapter;
+import com.playendlesslistview.generic.GenericLoader;
 
 import android.support.v4.content.Loader;
 import android.widget.ListView;
