@@ -85,7 +85,7 @@ public abstract class GenericAdapter<T> extends BaseAdapter {
 			ViewGroup parent) {
 		if (position >= serverListSize && serverListSize > 0) {
 			TextView tvLastRow = new TextView(mActivity);
-			tvLastRow.setText("已到最后一行");
+			tvLastRow.setHint("Reached the last row.");
 			tvLastRow.setGravity(Gravity.CENTER);
 			return tvLastRow;
 		}

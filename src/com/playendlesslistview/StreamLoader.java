@@ -14,17 +14,20 @@ import android.util.Log;
 
 
 public class StreamLoader extends GenericLoader<List<String>> implements GetDataListener{
-
+	private Context mContext;
 	public StreamLoader(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
+		mContext = context;
 	}
 
 	@Override
 	public void loadMore(int skip, int top) {
 		// TODO Auto-generated method stub
 		new GetDataTask(getContext(), this).execute(skip, top);
-		Log.d("eric", "skip: " + skip + " ; top: " + top );
+		String[] array = mContext.getResources().getStringArray(
+				R.array.navi_drawer_list);
+		serverListSize = array.length;
+		Log.d("eric", "skip: " + skip + " ; top: " + top + " ; serverListSize: " + serverListSize);
 	}
 	
 }

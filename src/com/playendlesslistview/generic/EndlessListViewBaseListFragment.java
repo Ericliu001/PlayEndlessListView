@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import com.playendlesslistview.EndlessScrollListener;
-
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.support.v4.app.LoaderManager.LoaderCallbacks;
@@ -16,12 +14,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-public abstract class EndlessListViewBaseListFragment<T> extends ListFragment implements
+public abstract class EndlessListViewBaseListFragment<T> extends ListFragment implements 
 		LoaderCallbacks<List<T>> {
 	protected static final int LOAD_DATA = 0;
 	protected List<T> dataList = new ArrayList<T>();
 	protected ListView lvData;
 	protected GenericAdapter<T> adapter;
+	
+	private int loadItemCount = 20;
 
 	public abstract ListView getDataListView();
 	public abstract GenericAdapter<T> getDataListAdapter();
@@ -67,13 +67,17 @@ public abstract class EndlessListViewBaseListFragment<T> extends ListFragment im
 		});
 		
 	}
+	
+	protected void setLoadItemCount(int count){
+		this.loadItemCount = count;
+	}
 
 	protected void loadMoreResultsFromApi(int page, int totalItemCount) {
 			if (isAdded()) {
 				Loader loader = getLoaderManager().getLoader(LOAD_DATA);
 				if (loader != null) {
-					((GenericLoader) loader).loadMore((page -1)*GenericLoader.LOAD_ITEM_NUMER,
-							GenericLoader.LOAD_ITEM_NUMER);
+					((GenericLoader) loader).loadMore((page -1)*loadItemCount,
+							loadItemCount);
 				}
 			}
 	}
