@@ -106,6 +106,10 @@ public abstract class EndlessListViewBaseListFragment<T> extends ListFragment im
 	public void onLoaderReset(Loader<List<T>> arg0) {
 	}
 
-
+ @Override
+public void onDestroyView() {
+	 dataList.clear();
+	 super.onDestroyView();
+}
 	
 }
