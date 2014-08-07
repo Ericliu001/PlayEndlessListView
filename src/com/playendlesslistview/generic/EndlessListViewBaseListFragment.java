@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
 public abstract class EndlessListViewBaseListFragment<T> extends ListFragment implements 
@@ -22,12 +23,28 @@ public abstract class EndlessListViewBaseListFragment<T> extends ListFragment im
 	protected GenericAdapter<T> adapter;
 	
 	private int loadItemCount = 20;
+	private OnScrollListener scrollListener;
 
 	public abstract ListView getDataListView();
 	public abstract GenericAdapter<T> getDataListAdapter();
 	public abstract GenericLoader<T> getGenericLoader();
 	
 	
+	
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		// TODO Auto-generated method stub
+		super.onCreate(savedInstanceState);
+		scrollListener = new EndlessScrollListener() {
+			
+			@Override
+			public void loadMoreResults(int page, int totalItemCount) {
+				// TODO Auto-generated method stub
+				loadMoreResultsFromApi(page, totalItemCount);
+				Log.d("eric", "page: " + page + " ; totalItemCount: " + totalItemCount );
+			}
+		};
+	}
 	
 
 	@Override
@@ -56,15 +73,7 @@ public abstract class EndlessListViewBaseListFragment<T> extends ListFragment im
 		setListAdapter(adapter);
 		
 		getLoaderManager().initLoader(LOAD_DATA, null, this);
-		lvData.setOnScrollListener(new EndlessScrollListener() {
-			
-			@Override
-			public void loadMoreResults(int page, int totalItemCount) {
-				// TODO Auto-generated method stub
-				loadMoreResultsFromApi(page, totalItemCount);
-				Log.d("eric", "page: " + page + " ; totalItemCount: " + totalItemCount );
-			}
-		});
+		lvData.setOnScrollListener(scrollListener);
 		
 	}
 	
@@ -108,7 +117,7 @@ public abstract class EndlessListViewBaseListFragment<T> extends ListFragment im
 
  @Override
 public void onDestroyView() {
-	 dataList.clear();
+//	 dataList.clear();
 	 super.onDestroyView();
 }
 	
