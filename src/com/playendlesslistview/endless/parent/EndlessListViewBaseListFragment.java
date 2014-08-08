@@ -11,11 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
 import com.playendlesslistview.multi_select.MultiSelectBaseListFragment;
-import com.playendlesslistview.tab.TabListFragment;
 
 public abstract class EndlessListViewBaseListFragment<T> extends MultiSelectBaseListFragment implements 
 		LoaderCallbacks<List<T>> {
@@ -25,7 +23,7 @@ public abstract class EndlessListViewBaseListFragment<T> extends MultiSelectBase
 	protected GenericAdapter<T> adapter;
 	
 	private int loadItemCount = 20;
-	private OnScrollListener scrollListener;
+	private EndlessScrollListener scrollListener;
 
 	public abstract ListView getDataListView();
 	public abstract GenericAdapter<T> getDataListAdapter();
@@ -46,6 +44,20 @@ public abstract class EndlessListViewBaseListFragment<T> extends MultiSelectBase
 				Log.d("eric", "page: " + page + " ; totalItemCount: " + totalItemCount );
 			}
 		};
+	}
+	
+	@Override
+	public void fetchData() {
+		dataList.clear();
+		setListAdapter(adapter);
+		
+		scrollListener.setCurrentPage(0);
+		scrollListener.setLoading(true);
+		scrollListener.setPreviousTotalItemCount(0);
+		scrollListener.setStartingPageIndex(0);
+		
+		adapter.notifyDataSetChanged();
+		
 	}
 	
 
@@ -87,7 +99,7 @@ public abstract class EndlessListViewBaseListFragment<T> extends MultiSelectBase
 			if (isAdded()) {
 				Loader loader = getLoaderManager().getLoader(LOAD_DATA);
 				if (loader != null) {
-					((GenericLoader) loader).loadMore((page -1)*loadItemCount,
+					((GenericLoader) loader).loadMore((page -1  )*loadItemCount,
 							loadItemCount);
 				}
 			}
@@ -108,7 +120,7 @@ public abstract class EndlessListViewBaseListFragment<T> extends MultiSelectBase
 			dataList.addAll((Collection<? extends T>) resultList);
 			adapter.setServerListSize(((GenericLoader)loader).getServerListSize());
 			adapter.notifyDataSetChanged();
-			
+			swipeContainer.setRefreshing(false);
 		}
 		
 	}

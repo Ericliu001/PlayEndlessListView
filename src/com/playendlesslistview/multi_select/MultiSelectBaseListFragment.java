@@ -13,9 +13,10 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.playendlesslistview.R;
+import com.playendlesslistview.swipe.SwipeListFragment;
 import com.playendlesslistview.tab.TabListFragment;
 
-public abstract class MultiSelectBaseListFragment extends TabListFragment {
+public abstract class MultiSelectBaseListFragment extends SwipeListFragment {
 
 	private static final String ACTION_MODE_ON = "action_mode_on";
 	private static final String STATE_CHOICE_MODE = "state choice mode";
@@ -38,6 +39,7 @@ public abstract class MultiSelectBaseListFragment extends TabListFragment {
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onViewCreated(view, savedInstanceState);
+		
 		mLv = getListView();
 		mLv.setChoiceMode(choiceMode);
 		// mLv.setOnItemSelectedListener(actionHelper);
@@ -100,7 +102,7 @@ public abstract class MultiSelectBaseListFragment extends TabListFragment {
 
 		@Override
 		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-
+			swipeContainer.setEnabled(false); // disable pull to refresh
 			choiceMode = ListView.CHOICE_MODE_MULTIPLE;
 			mLv.setChoiceMode(choiceMode);
 			mLv.setOnItemClickListener(this);
@@ -145,6 +147,7 @@ public abstract class MultiSelectBaseListFragment extends TabListFragment {
 
 		@Override
 		public void onDestroyActionMode(ActionMode mode) {
+			swipeContainer.setEnabled(true);// re-enable pull to refresh
 			isActionModeOn = false;
 			mLv.clearChoices();
 			mLv.setChoiceMode(ListView.CHOICE_MODE_NONE);

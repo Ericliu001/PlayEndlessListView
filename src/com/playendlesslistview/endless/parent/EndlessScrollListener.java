@@ -56,4 +56,20 @@ public abstract class EndlessScrollListener implements OnScrollListener {
 
 	public abstract void loadMoreResults(int page, int totalItemCount);
 
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
+	}
+
+	public void setPreviousTotalItemCount(int previousTotalItemCount) {
+		this.previousTotalItemCount = previousTotalItemCount;
+	}
+
+	public void setStartingPageIndex(int startingPageIndex) {
+		this.startingPageIndex = startingPageIndex;
+	}
+
+	public void setLoading(boolean isLoading) {
+		this.isLoading = isLoading;
+	}
+
 }

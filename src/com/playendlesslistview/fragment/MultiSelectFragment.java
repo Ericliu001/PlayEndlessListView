@@ -1,6 +1,7 @@
 package com.playendlesslistview.fragment;
 
 import android.os.Bundle;
+import android.support.v4.content.Loader;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;

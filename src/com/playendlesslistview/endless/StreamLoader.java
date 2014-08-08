@@ -25,7 +25,10 @@ public class StreamLoader extends GenericLoader<List<String>> implements GetData
 
 	@Override
 	public void loadMore(int skip, int top) {
-		// TODO Auto-generated method stub
+		if (skip < 0 ) {
+			skip = 0;
+		}
+		
 		new GetDataTask(getContext(), this).execute(skip, top);
 		String[] array = mContext.getResources().getStringArray(
 				R.array.navi_drawer_list);
