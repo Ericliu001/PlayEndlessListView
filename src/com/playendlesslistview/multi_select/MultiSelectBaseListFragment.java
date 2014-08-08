@@ -1,24 +1,21 @@
 package com.playendlesslistview.multi_select;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.playendlesslistview.R;
-import com.playendlesslistview.endless.parent.EndlessListViewBaseListFragment;
+import com.playendlesslistview.tab.TabListFragment;
 
-public abstract class MultiSelectBaseListFragment<T> extends
-		EndlessListViewBaseListFragment<T> {
+public abstract class MultiSelectBaseListFragment extends TabListFragment {
 
 	private static final String ACTION_MODE_ON = "action_mode_on";
 	private static final String STATE_CHOICE_MODE = "state choice mode";
@@ -44,7 +41,7 @@ public abstract class MultiSelectBaseListFragment<T> extends
 		mLv = getListView();
 		mLv.setChoiceMode(choiceMode);
 		// mLv.setOnItemSelectedListener(actionHelper);
-		 mLv.setOnItemClickListener(actionHelper);
+		mLv.setOnItemClickListener(null);
 
 		if ((savedInstanceState != null && savedInstanceState
 				.getBoolean(ACTION_MODE_ON)) || isActionModeOn) {
@@ -69,7 +66,7 @@ public abstract class MultiSelectBaseListFragment<T> extends
 		outState.putBoolean(ACTION_MODE_ON, isActionModeOn);
 		outState.putInt(STATE_CHOICE_MODE, mLv.getChoiceMode());
 	}
-
+/*
 	@Override
 	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 		inflater.inflate(R.menu.message, menu);
@@ -88,28 +85,30 @@ public abstract class MultiSelectBaseListFragment<T> extends
 		return true;
 	}
 
-	private void setUpAction() {
+	*/
+	
+	protected void setUpAction() {
 
-		
 		getActivity().startActionMode(actionHelper);
 	}
 
-	private class ActionModeHelper implements ActionMode.Callback, OnItemClickListener {
+	private class ActionModeHelper implements ActionMode.Callback,
+			OnItemClickListener {
 		private ActionMode actionMode;
 		private int checkedNumber = 0;
 		SparseBooleanArray checked = null;
-		
+
 		@Override
 		public boolean onCreateActionMode(ActionMode mode, Menu menu) {
 
 			choiceMode = ListView.CHOICE_MODE_MULTIPLE;
 			mLv.setChoiceMode(choiceMode);
-			
+			mLv.setOnItemClickListener(this);
 			actionMode = mode;
-			
+
 			getActivity().getMenuInflater().inflate(R.menu.send, menu);
 			mode.setTitle("Send Group Message");
-			mode.setSubtitle("(" + checkedNumber +  ")");
+			mode.setSubtitle("(" + checkedNumber + ")");
 			isActionModeOn = true;
 			return true;
 		}
@@ -149,8 +148,11 @@ public abstract class MultiSelectBaseListFragment<T> extends
 			isActionModeOn = false;
 			mLv.clearChoices();
 			mLv.setChoiceMode(ListView.CHOICE_MODE_NONE);
+			mLv.setOnItemClickListener(null);
 			choiceMode = ListView.CHOICE_MODE_NONE;
 			mLv.setAdapter(getListAdapter());
+			checkedNumber = 0;
+			checked = null;
 			if (actionMode != null) {
 				actionMode = null;
 			}

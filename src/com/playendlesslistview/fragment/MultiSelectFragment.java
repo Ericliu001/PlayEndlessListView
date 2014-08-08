@@ -1,15 +1,19 @@
 package com.playendlesslistview.fragment;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.ListView;
 
+import com.playendlesslistview.R;
 import com.playendlesslistview.endless.StreamAdapter;
 import com.playendlesslistview.endless.StreamLoader;
+import com.playendlesslistview.endless.parent.EndlessListViewBaseListFragment;
 import com.playendlesslistview.endless.parent.GenericAdapter;
 import com.playendlesslistview.endless.parent.GenericLoader;
-import com.playendlesslistview.multi_select.MultiSelectBaseListFragment;
 
-public class MultiSelectFragment extends MultiSelectBaseListFragment {
+public class MultiSelectFragment extends EndlessListViewBaseListFragment {
 
 
 	@Override
@@ -17,6 +21,7 @@ public class MultiSelectFragment extends MultiSelectBaseListFragment {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setLoadItemCount(15);
+		setHasOptionsMenu(true);
 	}
 
 	
@@ -39,6 +44,23 @@ public class MultiSelectFragment extends MultiSelectBaseListFragment {
 	}
 
 
+	@Override
+	public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+		inflater.inflate(R.menu.message, menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.action_compose_message:
+			setUpAction();
+			break;
+
+		default:
+			break;
+		}
+		return true;
+	}
 
 
 	@Override

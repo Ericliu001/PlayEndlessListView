@@ -14,9 +14,10 @@ import android.view.ViewGroup;
 import android.widget.AbsListView.OnScrollListener;
 import android.widget.ListView;
 
+import com.playendlesslistview.multi_select.MultiSelectBaseListFragment;
 import com.playendlesslistview.tab.TabListFragment;
 
-public abstract class EndlessListViewBaseListFragment<T> extends TabListFragment implements 
+public abstract class EndlessListViewBaseListFragment<T> extends MultiSelectBaseListFragment implements 
 		LoaderCallbacks<List<T>> {
 	protected static final int LOAD_DATA = 0;
 	protected List<T> dataList = new ArrayList<T>();
