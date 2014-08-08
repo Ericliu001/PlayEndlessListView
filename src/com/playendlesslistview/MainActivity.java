@@ -1,12 +1,18 @@
 package com.playendlesslistview;
 
 
+import java.util.ArrayList;
+
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+
+import com.playendlesslistview.fragment.MainFragment;
+import com.playendlesslistview.fragment.MultiSelectFragment;
+import com.playendlesslistview.tab.ActionTabActivity;
+import com.playendlesslistview.tab.TabListFragment;
 
 
 
-public class MainActivity extends FragmentActivity{
+public class MainActivity extends ActionTabActivity{
 	
 	
 	@Override
@@ -15,11 +21,31 @@ public class MainActivity extends FragmentActivity{
 		
 		
 		super.onCreate(arg0);
-		setContentView(R.layout.activity_container);
-		
-		if (getSupportFragmentManager().findFragmentByTag("Good") == null) {
-			getSupportFragmentManager().beginTransaction().add(R.id.container, new MainFragment(), "Good").commit();
-		}
+//		setContentView(R.layout.activity_container);
+//		
+//		if (getSupportFragmentManager().findFragmentByTag("Good") == null) {
+//			getSupportFragmentManager().beginTransaction().add(R.id.container, new MainFragment(), "Good").commit();
+//		}
+	}
+
+	@Override
+	protected ArrayList<TabListFragment> getFragmentList() {
+		ArrayList<TabListFragment> list = new ArrayList<TabListFragment>();
+		list.add(new MainFragment());
+		list.add(new MultiSelectFragment());
+		return list;
+	}
+
+	@Override
+	public String getActionbarTitle() {
+		// TODO Auto-generated method stub
+		return "Pretty Cool";
+	}
+
+	@Override
+	public String getActionbarSubTitle() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
