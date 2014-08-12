@@ -10,7 +10,6 @@ public abstract class EndlessScrollListener implements OnScrollListener {
 	private int currentPage = 0;
 	private int previousTotalItemCount = 0;
 	private int startingPageIndex = 0;
-	
 	private boolean isLoading = true;
 
 	
@@ -71,5 +70,6 @@ public abstract class EndlessScrollListener implements OnScrollListener {
 	public void setLoading(boolean isLoading) {
 		this.isLoading = isLoading;
 	}
+
 
 }

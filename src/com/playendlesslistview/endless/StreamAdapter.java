@@ -27,6 +27,12 @@ public class StreamAdapter extends GenericAdapter<String> {
 			tvRow = (TextView) row.findViewById(R.id.tvRow);
 		}
 	}
+	
+	@Override
+	public boolean isEnabled(int position) {
+		 // disable click events on the progress bar item. 
+		return getItemViewType(position) == VIEW_TYPE_ACTIVITY;
+	}
 
 	@Override
 	public View getDataRow(int position, View convertView, ViewGroup parent) {
